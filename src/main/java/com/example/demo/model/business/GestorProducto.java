@@ -9,99 +9,99 @@ import org.springframework.web.client.RestTemplate;
 public class GestorProducto {
 
 	@Autowired
-	private RestTemplate rt;
+	private RestTemplate restTemplate;
 
 	@Value("${tmdb.api.key}")
 	private String apiKey;
 
 	private final String url = "https://api.themoviedb.org/3";
 
-	public GestorProducto(RestTemplate rt) {
-		this.rt = rt;
+	public GestorProducto(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
 
 	}
 
-	public String getPeliculasPopulares() {
-		String busqueda = url + "/movie/popular?api_key=" + apiKey;
+	public String getPopularMovies() {
+		String search = url + "/movie/popular?api_key=" + apiKey;
 
-		return rt.getForObject(busqueda, String.class);
-
-	}
-
-	public String getPeliculasActuales() {
-		String busqueda = url + "/movie/now_playing?api_key=" + apiKey;
-
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
 
 	}
 
-	public String getPeliculasProximas() {
-		String busqueda = url + "/movie/upcoming?api_key=" + apiKey;
+	public String getCurrentMovies() {
+		String search = url + "/movie/now_playing?api_key=" + apiKey;
 
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
 
 	}
 
-	public String getPeliculasValoradas() {
-		String busqueda = url + "/movie/top_rated?api_key=" + apiKey;
+	public String getUpcomingMovies() {
+		String search = url + "/movie/upcoming?api_key=" + apiKey;
 
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
+
+	}
+
+	public String getTopRatedMovies() {
+		String search = url + "/movie/top_rated?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
 
 	}
 	
-	public String getPeliculasGenero(int id_genero) {
-		String busqueda = url + "/discover/movie?api_key=" + apiKey + "&with_genres=" + id_genero;
+	public String getMoviesByGenre(int id_genre) {
+		String search = url + "/discover/movie?api_key=" + apiKey + "&with_genres=" + id_genre;
 		
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
  
 	}
 	
-	public String getPeliculasPorId(long id_pelicula) {
-		String busqueda = url + "/movie/" + id_pelicula + "?api_key=" + apiKey;
+	public String getMovieById(long id_movie) {
+		String search = url + "/movie/" + id_movie + "?api_key=" + apiKey;
 
-		return rt.getForObject(busqueda, String.class);
-
-	}
-	
-	public String getSeriesPopulares() {
-		String busqueda = url + "/tv/popular?api_key=" + apiKey;
-
-		return rt.getForObject(busqueda, String.class);
-
-	}
-
-	public String getSeriesHoy() {
-		String busqueda = url + "/tv/airing_today?api_key=" + apiKey;
-
-		return rt.getForObject(busqueda, String.class);
-
-	}
-
-	public String getSeriesEmision() {
-		String busqueda = url + "/tv/on_the_air?api_key=" + apiKey;
-
-		return rt.getForObject(busqueda, String.class);
-
-	}
-
-	public String getSeriesValoradas() {
-		String busqueda = url + "/tv/top_rated?api_key=" + apiKey;
-
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
 
 	}
 	
-	public String getSeriesGenero(int id_genero) {
-		String busqueda = url + "/discover/tv?api_key=" + apiKey + "&with_genres=" + id_genero;
+	public String getPopularSeries() {
+		String search = url + "/tv/popular?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+
+	public String getSeriesAiringToday() {
+		String search = url + "/tv/airing_today?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+
+	public String getSeriesOnAir() {
+		String search = url + "/tv/on_the_air?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+
+	public String getTopRatedSeries() {
+		String search = url + "/tv/top_rated?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+	
+	public String getSeriesByGenre(int id_genre) {
+		String search = url + "/discover/tv?api_key=" + apiKey + "&with_genres=" + id_genre;
 		
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
  
 	}
 	
-	public String getSeriesPorId(long id_serie) {
-		String busqueda = url + "/tv/" + id_serie + "?api_key=" + apiKey;
+	public String getSeriesById(long id_serie) {
+		String search = url + "/tv/" + id_serie + "?api_key=" + apiKey;
 
-		return rt.getForObject(busqueda, String.class);
+		return restTemplate.getForObject(search, String.class);
 
 	}
 
