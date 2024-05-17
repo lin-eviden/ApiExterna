@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class GestorProducto {
@@ -20,7 +21,32 @@ public class GestorProducto {
 		this.restTemplate = restTemplate;
 
 	}
+	/*
+	 public String searchMulti(String query) {
+		String search = url + "/search/multi"+ "?api_key=" + apiKey+ "&query=" + query;
+	      
+	    return restTemplate.getForObject(search, String.class);	    
+	}*/
+	
+	 public String searchMulti(String query) {
+		    String searchUrl = url + "/search/multi";
 
+		    // Construir la URL con parámetros de consulta
+		    UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(searchUrl)
+		            .queryParam("api_key", apiKey)
+		            .queryParam("query", query);
+
+		    // Realizar la solicitud GET a la API
+		    return restTemplate.getForObject(builder.toUriString(), String.class);
+		}
+
+	public String getMovieGenreList() {
+		String search = url + "/genre/movie/list"+ "?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+	
 	public String getPopularMovies() {
 		String search = url + "/movie/popular?api_key=" + apiKey;
 
@@ -58,6 +84,14 @@ public class GestorProducto {
 	
 	public String getMovieById(long id_movie) {
 		String search = url + "/movie/" + id_movie + "?api_key=" + apiKey;
+
+		return restTemplate.getForObject(search, String.class);
+
+	}
+
+	
+	public String getSerieGenreList() {
+		String search = url + "/genre/tv/list"+ "?api_key=" + apiKey;
 
 		return restTemplate.getForObject(search, String.class);
 
@@ -104,5 +138,6 @@ public class GestorProducto {
 		return restTemplate.getForObject(search, String.class);
 
 	}
+
 
 }

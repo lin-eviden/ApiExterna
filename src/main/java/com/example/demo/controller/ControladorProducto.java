@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.business.GestorProducto;
@@ -12,6 +13,19 @@ public class ControladorProducto {
 
 	@Autowired
 	private GestorProducto gp;
+
+	 // Buscar películas o series por palabra clave
+    @GetMapping("/search")
+    public String searchMulti(@RequestParam  String query) {
+        return gp.searchMulti(query);
+    }
+    
+	//GENEROS de películas
+	@GetMapping("/movies/genrelist")
+	public String getMovieGenreList() {
+		return gp.getMovieGenreList();
+
+	}
 
 	// Películas populares
 	@GetMapping("/movies/popular")
@@ -47,6 +61,7 @@ public class ControladorProducto {
 		return gp.getMoviesByGenre(id_genre);
 
 	}
+	
 
 	// Buscar serie por ID
 	@GetMapping("/movies/search/{id_movie}")
@@ -54,7 +69,14 @@ public class ControladorProducto {
 		return gp.getMovieById(id_movie);
 
 	}
+	
+	//GENEROS de series
+	@GetMapping("/series/genrelist")
+	public String getSerieGenreList() {
+		return gp.getSerieGenreList();
 
+	}
+	
 	// Series populares
 	@GetMapping("/series/popular")
 	public String getPopularSeries() {
