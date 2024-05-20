@@ -100,21 +100,21 @@ public class ControladorAPI {
 
 	}
 	
-	//Peliculas populares ESPAÑOLAS
+	//Series populares ESPAÑOLAS
 	@GetMapping("/series/spanish")
 	public String getSpanishSerie() {
 		return ga.getSpanishSerie();
 
 	}
 	
-	//Peliculas de ACCION
+	//Series de ACCION
 	@GetMapping("/series/genre/action")
 	public String getActionSerie() {
 		return ga.getActionSerie();
 
 	}
 		
-	//Peliculas de DRAMA
+	//Series de DRAMA
 	@GetMapping("/series/genre/drama")
 	public String getDramaSerie() {
 		return ga.getDramaSerie();
