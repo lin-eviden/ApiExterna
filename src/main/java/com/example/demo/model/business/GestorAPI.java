@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
-public class GestorProducto {
+public class GestorAPI {
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -17,7 +17,7 @@ public class GestorProducto {
 
 	private final String url = "https://api.themoviedb.org/3";
 
-	public GestorProducto(RestTemplate restTemplate) {
+	public GestorAPI(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 
 	}
