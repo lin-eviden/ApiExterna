@@ -161,6 +161,12 @@ public class GestorAPI {
 		return restTemplate.getForObject(search, String.class);
 
 	}
+	
+	public String searchMulti(String query) {
+		String search = url + "/search/multi"+ "?api_key=" + apiKey+ "&query=" + query + "&language=es-ES";
+	      
+	    return restTemplate.getForObject(search, String.class);	    
+	}
 
 
 }
