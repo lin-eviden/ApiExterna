@@ -23,7 +23,7 @@ public class GestorAPI {
 
 	}
 	
-//PELÍCULAS
+	//PELÍCULAS
 	public String getMovieGenreList() {
 		String search = url + "/genre/movie/list"+ "?api_key=" + apiKey + language;
 
@@ -93,7 +93,13 @@ public class GestorAPI {
 
 	}
 
+	public String searchMovies(String query) {
+		String search = url + "/search/movie"+ "?api_key=" + apiKey+ "&query=" + query + "&language=es-ES";
+	      
+	    return restTemplate.getForObject(search, String.class);	    
+	}
 	
+	//SERIES
 	public String getSerieGenreList() {
 		String search = url + "/genre/tv/list"+ "?api_key=" + apiKey + language;
 
@@ -162,11 +168,16 @@ public class GestorAPI {
 
 	}
 	
-	public String searchMulti(String query) {
-		String search = url + "/search/multi"+ "?api_key=" + apiKey+ "&query=" + query + "&language=es-ES";
+	public String searchSeries(String query) {
+		String search = url + "/search/tv"+ "?api_key=" + apiKey+ "&query=" + query + "&language=es-ES";
 	      
 	    return restTemplate.getForObject(search, String.class);	    
 	}
-
+	
+	public String multiSearch(String query){
+		String j = "";
+		j+= searchMovies(query);
+		return j+= searchSeries(query);
+	}
 
 }

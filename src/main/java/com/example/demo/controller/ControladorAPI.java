@@ -164,7 +164,7 @@ public class ControladorAPI {
 	// Buscar películas o series por palabra clave
 	@GetMapping("/search")
 	public String searchMulti(@RequestParam String query) {
-		return ga.searchMulti(query);
+		return ga.multiSearch(query);
 	}
 
 }
